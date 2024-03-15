@@ -1,7 +1,9 @@
 import React from "react";
 import Image from "./images/logo.png";
 
-const Card = () => {
+const Card = (props) => {
+
+    
     return (
         <>
             <div className="container " id="main_container">
@@ -9,28 +11,20 @@ const Card = () => {
                     <img src={Image} id="img" className="card-img-top" alt="..." />
                     <div className="card-body">
                         <div className="weatherInfo">
-                            <p>Moscow ,RU</p>
-                            <h3>Clouds:broken clouds   </h3>
-                            <p>Temp:277.31</p>
-                            <p>humidity:100</p>
+                            <p>{props.city} ,{props.country}</p>
+                            <h3>{props.title}:{props.desc}</h3>
+                            <p>Temp:{props.temp}</p>
+                            <p>humidity:{props.humidity}</p>
 
                             <div className="extraInfo">
-                                <p>Temp_min:276.06</p>
-                                <p>Temp_max:278.44</p>
-                                <p>pressure:1022</p>
-                                <p>sea_level:1022</p>
-                                <p>grnd_level:1004</p>
-                            </div>
-
-                            <div className="wind">
-                                <p>speed:3.74</p>
-                                <p>deg:204</p>
-                                <p>gust:6.9</p>
+                                <p>Temp_min:{props.temp_min}</p>
+                                <p>Temp_max:{props.temp_max}</p>
+                                <p>pressure:{props.pressure}</p>
                             </div>
 
                             <div className="sun">
-                                <p>sunrise:13:20</p>
-                                <p>sunrise:14:23</p>
+                                <p>sunrise:{props.sunrise}</p>
+                                <p>sunrise:{props.sunset}</p>
                             </div>
                         </div>
                     </div>
