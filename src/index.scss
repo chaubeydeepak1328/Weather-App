@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Multi&display=swap");
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Muli', sans-serif;
+}
+
+body {
+  width: 100%;
+  height: 100%;
+}
+
+
+.weatherInfo {
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 400px;
+}
+
+.weatherInfo p {
+  margin: 5px 0;
+}
+
+.weatherInfo h3 {
+  margin: 10px 0;
+}
+
+.extraInfo, .wind, .sun {
+  margin-top: 15px;
+}
+
+.extraInfo p, .wind p, .sun p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #555;
+}
+
+#img{}
+
+@media (min-width:768px) {
+  #w_card {
+    width: 50rem;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+  }
+
+  .weatherInfo{
+    width: 60rem;
+  }
+
+  #img{
+    width: 15rem;
+  }
+
+  #main_container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
