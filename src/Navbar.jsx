@@ -48,8 +48,11 @@ const Navbar = () => {
             const data = await res.json();
             const lat = data.features[0].bbox[1];
             const lon = data.features[0].bbox[0];
-            const res1 = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=84b3ef7e6cc3cbda6e25907eb64340a0`);
+            const res1 = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=84b3ef7e6cc3cbda6e25907eb64340a0`);
             const data1 = await res1.json();
+            console.log(data)
+            console.log(data1)
+
 
             setWeather(prevWeather => ({
                 ...prevWeather,
