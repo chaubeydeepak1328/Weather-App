@@ -6,8 +6,7 @@ const Navbar = () => {
     const [text, setText] = useState("Delhi India");
 
     const [weather, setWeather] = useState({
-        country: '',
-        city: '',
+        search_location:'',
         humidity: '',
         pressure: '',
         temp: '',
@@ -36,7 +35,7 @@ const Navbar = () => {
         const seconds = dateObject.getSeconds();
 
         // Format the date and time
-        const formattedTime = `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day} ${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
+        const formattedTime = `${day < 10 ? '0' + day : day}/${month < 10 ? '0' + month : month}//${year} ${hours < 10 ? '0' + hours : hours}:${minutes < 10 ? '0' + minutes : minutes}:${seconds < 10 ? '0' + seconds : seconds}`;
 
         return formattedTime;
     }
@@ -44,19 +43,19 @@ const Navbar = () => {
 
     const ApiCall = async () => {
         try {
-            const res = await fetch(`https://api.geoapify.com/v1/geocode/autocomplete?text=${text}&apiKey=cc4c88b448964d59a69a49036301173c`);
+            const res = await fetch(`https://api.geoapify.com/v1/geocode/autocomplete?text=${text}&apiKey=${process.env.REACT_APP_SECRET_KEY1}`);
             const data = await res.json();
             const lat = data.features[0].bbox[1];
             const lon = data.features[0].bbox[0];
-            const res1 = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=84b3ef7e6cc3cbda6e25907eb64340a0`);
+            const res1 = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.REACT_APP_SECRET_KEY2}`);
             const data1 = await res1.json();
-            console.log(data)
-            console.log(data1)
+            // console.log(data)
+            // console.log(data1)
 
 
             setWeather(prevWeather => ({
                 ...prevWeather,
-                country: data.features[0].properties.country,
+                search_location:`${data.features[0].properties.address_line1} ${data.features[0].properties.address_line2}`,
                 city: data.features[0].properties.city,
                 humidity: data1.main.humidity,
                 pressure: data1.main.pressure,
@@ -94,7 +93,7 @@ const Navbar = () => {
                     </form>
                 </div>
             </nav>
-            <Card country={weather.country} city={weather.city} humidity={weather.humidity} pressure={weather.pressure} temp={weather.temp} temp_max={weather.temp_max} temp_min={weather.temp_min} sunrise={weather.sunrise} sunset={weather.sunset} title={weather.sunset} desc={weather.desc} />
+            <Card address={weather.search_location} humidity={weather.humidity} pressure={weather.pressure} temp={weather.temp} temp_max={weather.temp_max} temp_min={weather.temp_min} sunrise={weather.sunrise} sunset={weather.sunset} title={weather.sunset} desc={weather.desc} />
         </>
     )
 }

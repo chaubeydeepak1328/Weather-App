@@ -11,8 +11,8 @@ const Card = (props) => {
                     <img src={Image} id="img" className="card-img-top p-1" alt="..." />
                     <div className="card-body">
                         <div className="weatherInfo">
-                            <p>{props.city} ,{props.country}</p>
-                            <h3>{props.title}:{props.desc}</h3>
+                            <p>{props.address}</p>
+                            <h4>{props.title}:{props.desc}</h4>
                             <p>Temp:{props.temp}°C</p>
                             <p>humidity:{props.humidity}</p>
 
